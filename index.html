@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOE MALL | Your World of Style</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#faf8f5;
+  --white:#fff;
+  --ink:#211a1c;
+  --burgundy:#70283c;
+  --wine:#491624;
+  --gold:#c6a36a;
+  --muted:#888084;
+  --line:#eee7e3;
+  --soft:#f2e9e8;
+  --green:#56735b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:var(--bg);color:var(--ink);font-family:'Cairo',sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.container{width:min(1320px,92%);margin:auto}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Announcement */
+.announcement{
+ background:var(--wine);color:white;text-align:center;
+ padding:9px 15px;font-size:11px;letter-spacing:.4px;
+}
+.announcement span{color:#e4c895}
+
+/* Header */
+header{
+ position:sticky;top:0;z-index:100;
+ background:rgba(250,248,245,.96);
+ backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--line);
+}
+.navbar{
+ min-height:82px;display:flex;align-items:center;
+ justify-content:space-between;gap:24px;
+}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:33px;letter-spacing:2px}
+.logo span{color:var(--burgundy)}
+.logo small{display:block;font-family:'Cairo',sans-serif;font-size:8px;letter-spacing:4px;color:var(--muted);text-align:center;margin-top:-7px}
+nav{display:flex;align-items:center;gap:23px;font-size:12px;font-weight:600}
+nav a{transition:.2s}
+nav a:hover{color:var(--burgundy)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.round-btn{
+ width:40px;height:40px;border-radius:50%;
+ display:grid;place-items:center;background:white;
+ border:1px solid var(--line);color:var(--ink);font-size:17px;
+ transition:.25s;position:relative;
+}
+.round-btn:hover{background:var(--burgundy);color:white}
+.cart-count{
+ position:absolute;top:-4px;left:-4px;
+ width:18px;height:18px;border-radius:50%;
+ display:grid;place-items:center;
+ background:var(--burgundy);color:white;font-size:9px;
+}
+.lang-btn{
+ border:1px solid #dfd1cb;background:transparent;
+ padding:8px 13px;border-radius:30px;color:var(--burgundy);
+ font-size:11px;font-weight:700;
+}
+.menu-btn{display:none}
+
+/* Hero */
+.hero{
+ display:grid;grid-template-columns:.88fr 1.12fr;
+ gap:45px;align-items:center;padding:45px 0 60px;
+}
+.hero-content{padding:25px 0}
+.eyebrow{
+ display:flex;align-items:center;gap:10px;
+ color:var(--burgundy);font-size:11px;font-weight:700;
+ letter-spacing:1.7px;margin-bottom:22px;
+}
+.eyebrow:before{content:"";width:30px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(44px,5vw,72px);line-height:1.4;font-weight:800;letter-spacing:-1px}
+.hero h1 span{color:var(--burgundy)}
+.hero-description{color:var(--muted);font-size:13px;line-height:2.2;margin:20px 0 28px;max-width:440px}
+.hero-actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ padding:13px 25px;border-radius:30px;
+ border:1px solid var(--burgundy);background:var(--burgundy);
+ color:white;font-size:12px;font-weight:700;transition:.3s;
+}
+.btn:hover{background:var(--wine);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--burgundy)}
+.btn-outline:hover{background:var(--burgundy);color:white}
+.hero-note{display:flex;align-items:center;gap:12px;margin-top:34px}
+.avatars{display:flex;direction:ltr}
+.avatars span{
+ width:30px;height:30px;border-radius:50%;border:2px solid var(--bg);
+ display:grid;place-items:center;margin-left:-8px;background:var(--soft);font-size:12px;
+}
+.hero-note strong{font-size:11px;display:block}
+.hero-note small{font-size:10px;color:var(--muted)}
+.hero-visual{
+ height:525px;position:relative;border-radius:7px 100px 7px 7px;
+ overflow:hidden;background:#4d2732;
+}
+.hero-visual>img{width:100%;height:100%;object-fit:cover}
+.hero-visual:after{
+ content:"";position:absolute;inset:0;
+ background:linear-gradient(0deg,rgba(30,9,15,.55),transparent 55%);
+ pointer-events:none;
+}
+.hero-tag{
+ position:absolute;z-index:1;bottom:28px;right:28px;color:white;
+}
+.hero-tag small{font-size:10px;letter-spacing:2px}
+.hero-tag h3{font-size:27px;margin:5px 0}
+.hero-tag p{font-size:11px;color:#eee}
+.floating-card{
+ position:absolute;z-index:2;top:30px;left:25px;
+ padding:15px 18px;background:#fffaf4;border-radius:13px;
+ box-shadow:0 10px 35px #25101620;
+}
+.floating-card small{font-size:10px;color:var(--muted)}
+.floating-card strong{display:block;color:var(--burgundy);font-size:21px}
+
+/* Benefits */
+.benefits{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ background:white;border:1px solid var(--line);
+ border-radius:14px;padding:23px 10px;margin-bottom:80px;
+}
+.benefit{display:flex;align-items:center;justify-content:center;gap:12px;padding:5px;border-left:1px solid var(--line)}
+.benefit:last-child{border:0}
+.benefit-icon{
+ width:42px;height:42px;flex-shrink:0;
+ display:grid;place-items:center;border-radius:50%;
+ background:#f7edef;color:var(--burgundy);font-size:18px;
+}
+.benefit strong{font-size:12px;display:block}
+.benefit small{font-size:10px;color:var(--muted)}
+
+/* General sections */
+.section{margin-bottom:85px}
+.section-heading{
+ display:flex;align-items:end;justify-content:space-between;
+ gap:20px;margin-bottom:28px;
+}
+.section-heading h2{font-size:30px;font-weight:800;line-height:1.5}
+.section-heading h2 span{color:var(--burgundy)}
+.section-heading p{font-size:12px;color:var(--muted);margin-top:4px}
+.text-link{font-size:11px;font-weight:700;color:var(--burgundy);white-space:nowrap}
+.text-link span{font-size:17px;margin-right:4px}
+
+/* Categories */
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.category-card{
+ background:white;border:1px solid var(--line);border-radius:12px;
+ overflow:hidden;cursor:pointer;transition:.3s;
+}
+.category-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px #30121b0d}
+.category-image{height:180px;overflow:hidden;background:var(--soft);position:relative}
+.category-image img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.category-card:hover img{transform:scale(1.07)}
+.category-info{padding:14px}
+.category-info h3{font-size:14px}
+.category-info p{font-size:10px;color:var(--muted);margin-top:4px}
+.category-info .arrow{
+ float:left;color:var(--burgundy);font-size:17px;margin-top:-22px;
+}
+
+/* Promotion strip */
+.promo-strip{
+ display:grid;grid-template-columns:1fr 1fr 1fr;
+ background:var(--wine);border-radius:14px;overflow:hidden;
+ margin-bottom:85px;color:white;
+}
+.promo-box{padding:30px 26px;border-left:1px solid #ffffff20}
+.promo-box:last-child{border:0}
+.promo-box small{font-size:10px;color:#dfc5c8}
+.promo-box h3{font-size:20px;margin:7px 0}
+.promo-box p{font-size:11px;color:#ddcfd1;line-height:1.9}
+.promo-box a{display:inline-block;margin-top:13px;font-size:11px;color:#e5c995;font-weight:700}
+
+/* Products */
+.shop-panel{
+ background:white;border:1px solid var(--line);
+ padding:22px;border-radius:15px;
+}
+.shop-tools{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.search-box{flex:1;position:relative}
+.search-box input{
+ width:100%;border:1px solid var(--line);border-radius:30px;
+ background:#faf8f6;padding:13px 18px;color:var(--ink);font-size:12px;
+}
+.search-box input:focus{outline:1px solid var(--gold)}
+.sort-select{
+ border:1px solid var(--line);border-radius:30px;
+ background:white;padding:12px;font-size:11px;max-width:180px;
+}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.filter-btn{
+ border:1px solid #e9e0dd;background:white;color:#665d60;
+ border-radius:30px;padding:8px 16px;font-size:11px;transition:.2s;
+}
+.filter-btn:hover,.filter-btn.active{background:var(--burgundy);color:white;border-color:var(--burgundy)}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product-card{
+ background:white;border:1px solid #f0eae7;border-radius:11px;
+ overflow:hidden;min-width:0;transition:.3s;
+}
+.product-card:hover{box-shadow:0 12px 30px #30121b12;transform:translateY(-4px)}
+.product-image{height:245px;position:relative;overflow:hidden;background:#f3eeeb}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.product-card:hover .product-image img{transform:scale(1.05)}
+.product-badge{
+ position:absolute;top:12px;right:12px;background:var(--burgundy);
+ color:white;border-radius:20px;padding:5px 10px;font-size:9px;
+}
+.product-heart{
+ position:absolute;top:10px;left:10px;width:32px;height:32px;
+ display:grid;place-items:center;border:0;border-radius:50%;
+ background:#ffffffed;color:#6c3946;font-size:17px;
+}
+.product-heart.liked{background:var(--burgundy);color:white}
+.product-info{padding:14px}
+.product-category{font-size:10px;color:var(--burgundy);margin-bottom:5px}
+.product-info h3{font-size:12px;line-height:1.9;min-height:44px}
+.product-rating{font-size:10px;color:#c59c47;margin:6px 0}
+.product-rating span{color:#999;margin-right:4px}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:9px}
+.price{font-size:12px;font-weight:800}
+.old-price{font-size:9px;color:#aaa;text-decoration:line-through;margin-right:4px}
+.add-btn{
+ border:0;width:35px;height:35px;border-radius:50%;
+ display:grid;place-items:center;background:#f4e9eb;
+ color:var(--burgundy);font-size:20px;transition:.2s;
+}
+.add-btn:hover{background:var(--burgundy);color:white}
+.empty-state{grid-column:1/-1;text-align:center;padding:50px 10px;color:var(--muted);font-size:13px}
+.results-note{font-size:10px;color:var(--muted);margin-top:20px}
+
+/* Editorial banner */
+.editorial{
+ display:grid;grid-template-columns:1fr 1fr;min-height:350px;
+ background:#eee4df;border-radius:15px;overflow:hidden;
+}
+.editorial-image{min-height:350px}
+.editorial-image img{width:100%;height:100%;object-fit:cover}
+.editorial-content{padding:45px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.editorial-content .eyebrow{margin-bottom:13px}
+.editorial-content h2{font-size:clamp(27px,3vw,43px);line-height:1.6}
+.editorial-content p{font-size:12px;color:#74676a;line-height:2.2;margin:12px 0 22px;max-width:400px}
+
+/* Newsletter */
+.newsletter{
+ background:var(--soft);padding:45px 20px;border-radius:15px;
+ text-align:center;margin-bottom:75px;
+}
+.newsletter h2{font-size:25px}
+.newsletter p{font-size:12px;color:var(--muted);margin:8px 0 22px}
+.newsletter-form{display:flex;gap:8px;max-width:470px;margin:auto}
+.newsletter-form input{
+ flex:1;min-width:0;padding:13px 18px;border:1px solid #e4d6d4;
+ border-radius:30px;background:white;font-size:11px;
+}
+.newsletter-form button{border:0;border-radius:30px;padding:12px 23px;background:var(--burgundy);color:white;font-size:11px;font-weight:700}
+
+/* Footer */
+footer{background:#211719;color:white;padding:50px 0 20px}
+.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:35px;padding-bottom:38px}
+.footer-logo{font-size:34px;font-family:'Poppins',sans-serif;font-weight:800}
+.footer-logo span{color:#d6b17a}
+.footer-about p{font-size:11px;color:#c1b5b7;line-height:2.2;margin-top:12px;max-width:300px}
+.footer-col h3{font-size:12px;margin-bottom:17px;color:#e4c895}
+.footer-col a{display:block;color:#c1b5b7;font-size:11px;margin-bottom:12px}
+.footer-col a:hover{color:white}
+.socials{display:flex;gap:8px;margin-top:17px}
+.socials a{width:33px;height:33px;border:1px solid #59474b;border-radius:50%;display:grid;place-items:center;margin:0}
+.copyright{border-top:1px solid #443437;padding-top:20px;text-align:center;font-size:10px;color:#a9999d}
+
+.toast{
+ position:fixed;bottom:22px;left:22px;z-index:200;
+ background:var(--wine);color:white;padding:13px 20px;
+ border-radius:30px;font-size:12px;
+ opacity:0;transform:translateY(70px);transition:.3s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+@media(max-width:1050px){
+ nav{gap:12px}
+ nav a{font-size:10px}
+ .categories{grid-template-columns:repeat(4,1fr)}
+ .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .product-image{height:230px}
+ .hero-visual{height:440px}
+ .benefit{gap:7px}
+ .footer-grid{grid-template-columns:1.5fr 1fr 1fr}
+ .footer-col:last-child{display:none}
+}
+@media(max-width:720px){
+ .navbar{min-height:72px;gap:9px}
+ .logo{font-size:27px}
+ .menu-btn{display:grid}
+ nav{
+  display:none;position:absolute;top:72px;right:0;width:100%;
+  background:var(--bg);border-bottom:1px solid var(--line);
+  padding:20px 5%;flex-direction:column;align-items:stretch;gap:17px;
+ }
+ nav.open{display:flex}
+ nav a{font-size:13px}
+ .nav-actions{gap:6px}
+ .round-btn{width:36px;height:36px}
+ .lang-btn{padding:8px 10px}
+ .hero{grid-template-columns:1fr;gap:25px;padding:30px 0 45px}
+ .hero-content{padding:5px 0}
+ .hero h1{font-size:48px}
+ .hero-description{font-size:12px}
+ .hero-visual{height:400px;border-radius:7px 75px 7px 7px}
+ .benefits{grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:55px}
+ .benefit{justify-content:flex-start;padding:5px 10px;border:0}
+ .section{margin-bottom:60px}
+ .section-heading h2{font-size:24px}
+ .categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .category-image{height:180px}
+ .promo-strip{grid-template-columns:1fr;margin-bottom:60px}
+ .promo-box{border-left:0;border-bottom:1px solid #ffffff20;padding:22px}
+ .promo-box:last-child{border:0}
+ .shop-panel{padding:13px}
+ .shop-tools{flex-wrap:wrap}
+ .search-box{flex-basis:100%}
+ .sort-select{max-width:none;width:100%}
+ .filters{gap:6px}
+ .filter-btn{padding:8px 12px}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-image{height:205px}
+ .product-info{padding:10px}
+ .product-info h3{font-size:11px}
+ .price{font-size:10px}
+ .add-btn{width:32px;height:32px}
+ .editorial{grid-template-columns:1fr}
+ .editorial-image{height:270px;min-height:270px}
+ .editorial-content{padding:27px}
+ .newsletter{padding:35px 15px;margin-bottom:50px}
+ .newsletter h2{font-size:22px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+ .footer-about{grid-column:1/-1}
+}
+@media(max-width:380px){
+ .logo{font-size:23px}
+ .hero h1{font-size:41px}
+ .product-image{height:175px}
+ .category-image{height:150px}
+ .category-info{padding:10px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement" id="announcement">
+  <span>✦</span> اكتشف أحدث مجموعات JOE MALL — أناقتك تبدأ من هنا
+</div>
+
+<header>
+ <div class="container navbar">
+
+  <button class="round-btn menu-btn" id="menuBtn" aria-label="القائمة">☰</button>
+
+  <a href="#home" class="logo">JOE<span>.</span><small>MALL & STORE</small></a>
+
+  <nav id="nav">
+   <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+   <a href="#categories" data-ar="الأقسام" data-en="Categories">الأقسام</a>
+   <a href="#products" data-ar="المتجر" data-en="Shop">المتجر</a>
+   <a href="#new" data-ar="وصل حديثًا" data-en="New Arrivals">وصل حديثًا</a>
+   <a href="#offers" data-ar="العروض" data-en="Offers">العروض</a>
+  </nav>
+
+  <div class="nav-actions">
+   <button class="lang-btn" id="langBtn">EN</button>
+   <button class="round-btn" id="searchFocus" aria-label="البحث">⌕</button>
+   <button class="round-btn" id="cartBtn" aria-label="السلة">♡
+    <span class="cart-count" id="cartCount">0</span>
+   </button>
+  </div>
+
+ </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="container hero" id="home">
+
+ <div class="hero-content">
+  <div class="eyebrow" id="heroEyebrow">WELCOME TO JOE MALL</div>
+
+  <h1 id="heroTitle">
+   عالمك من<br>
+   <span>الأناقة يبدأ هنا.</span>
+  </h1>
+
+  <p class="hero-description" id="heroDesc">
+   من الساعات الفاخرة لأحدث الكوتشات والملابس والأحذية والبدل.
+   اكتشف تجربة تسوق مختلفة تجمع كل احتياجاتك في مكان واحد.
+  </p>
+
+  <div class="hero-actions">
+   <a href="#categories" class="btn" id="heroBtn">اكتشف أقسامنا <span>←</span></a>
+   <a href="#products" class="btn btn-outline" id="heroSecondBtn">تسوق الآن</a>
+  </div>
+
+  <div class="hero-note">
+   <div class="avatars"><span>⌚</span><span>✦</span><span>♧</span></div>
+   <div>
+    <strong id="heroNoteTitle">كل تفاصيل إطلالتك في مكان واحد</strong>
+    <small id="heroNoteDesc">ملابس • ساعات • أحذية • إكسسوارات</small>
+   </div>
+  </div>
+ </div>
+
+ <div class="hero-visual">
+  <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85" alt="عالم الموضة والتسوق">
+  <div class="floating-card">
+   <small id="floatSmall">YOUR STYLE</small>
+   <strong>JOE MALL</strong>
+   <small id="floatBottom">ONE DESTINATION</small>
+  </div>
+  <div class="hero-tag">
+   <small id="heroTagSmall">DISCOVER YOUR LOOK</small>
+   <h3 id="heroTagTitle">Style. Quality. You.</h3>
+   <p id="heroTagDesc">اختار اللي يشبهك.</p>
+  </div>
+ </div>
+
+</section>
+
+<!-- BENEFITS -->
+<section class="container benefits">
+ <div class="benefit">
+  <div class="benefit-icon">✧</div>
+  <div><strong id="b1">تشكيلة متنوعة</strong><small id="bd1">كل احتياجاتك مع بعض</small></div>
+ </div>
+ <div class="benefit">
+  <div class="benefit-icon">♡</div>
+  <div><strong id="b2">ستايل يناسبك</strong><small id="bd2">اختيارات لكل الأذواق</small></div>
+ </div>
+ <div class="benefit">
+  <div class="benefit-icon">◇</div>
+  <div><strong id="b3">تجربة سهلة</strong><small id="bd3">ابحث واختار بسهولة</small></div>
+ </div>
+ <div class="benefit">
+  <div class="benefit-icon">✦</div>
+  <div><strong id="b4">عالم JOE</strong><small id="bd4">كل حاجة في مكان واحد</small></div>
+ </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="container section" id="categories">
+ <div class="section-heading">
+  <div>
+   <h2 id="categoriesTitle">تسوق حسب <span>القسم.</span></h2>
+   <p id="categoriesDesc">اختار القسم واكتشف مجموعتنا المتنوعة.</p>
+  </div>
+  <a class="text-link" href="#products" id="allProductsLink">كل المنتجات <span>←</span></a>
+ </div>
+ <div class="categories" id="categoryGrid"></div>
+</section>
+
+<!-- PROMO STRIP -->
+<section class="container promo-strip" id="offers">
+ <div class="promo-box">
+  <small id="promo1Small">THE PERFECT LOOK</small>
+  <h3 id="promo1Title">إطلالة متكاملة</h3>
+  <p id="promo1Desc">من اللبس للحذاء والإكسسوارات.</p>
+  <a href="#products" id="promo1Link">اكتشف المنتجات ←</a>
+ </div>
+ <div class="promo-box">
+  <small id="promo2Small">TIMELESS STYLE</small>
+  <h3 id="promo2Title">الوقت له أناقة</h3>
+  <p id="promo2Desc">اكتشف تشكيلة الساعات المميزة.</p>
+  <a href="#products" onclick="selectCategory('watches')" id="promo2Link">تسوق الساعات ←</a>
+ </div>
+ <div class="promo-box">
+  <small id="promo3Small">EVERYDAY ESSENTIALS</small>
+  <h3 id="promo3Title">تفاصيلك اليومية</h3>
+  <p id="promo3Desc">كل القطع الأساسية اللي تحتاجها.</p>
+  <a href="#products" onclick="selectCategory('homewear')" id="promo3Link">اكتشف المزيد ←</a>
+ </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="container section" id="products">
+ <div class="section-heading">
+  <div>
+   <h2 id="productsTitle">اختيارات <span>JOE.</span></h2>
+   <p id="productsDesc">تشكيلة من المنتجات المختارة لتناسب يومك.</p>
+  </div>
+  <a href="#categories" class="text-link" id="backCategories">تصفح الأقسام ←</a>
+ </div>
+
+ <div class="shop-panel">
+  <div class="shop-tools">
+   <div class="search-box">
+    <input type="search" id="searchInput" placeholder="ابحث عن ساعة، كوتشي، قميص..." aria-label="ابحث عن المنتجات">
+   </div>
+   <select class="sort-select" id="sortSelect" aria-label="ترتيب المنتجات">
+    <option value="featured" id="sortFeatured">الترتيب الافتراضي</option>
+    <option value="low" id="sortLow">السعر: من الأقل للأعلى</option>
+    <option value="high" id="sortHigh">السعر: من الأعلى للأقل</option>
+   </select>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div class="product-grid" id="productGrid"></div>
+  <p class="results-note" id="resultsNote"></p>
+ </div>
+</section>
+
+<!-- EDITORIAL -->
+<section class="container section" id="new">
+ <div class="editorial">
+  <div class="editorial-image">
+   <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85" alt="مجموعة أزياء عصرية">
+  </div>
+  <div class="editorial-content">
+   <div class="eyebrow" id="editorialEyebrow">THE NEW EDIT</div>
+   <h2 id="editorialTitle">كل يوم فرصة<br>لستايل جديد.</h2>
+   <p id="editorialDesc">اكتشف قطع تقدر تنسقها بطريقتك، من الإطلالة الكاجوال لحد المناسبات الخاصة.</p>
+   <a href="#products" class="btn" id="editorialBtn">اكتشف مجموعتنا ←</a>
+  </div>
+ </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="container newsletter">
+ <h2 id="newsTitle">خليك قريب من عالم JOE.</h2>
+ <p id="newsDesc">اشترك لمتابعة أحدث المنتجات والعروض.</p>
+ <form class="newsletter-form" id="newsletterForm">
+  <input type="email" id="emailInput" placeholder="بريدك الإلكتروني" required>
+  <button type="submit" id="subscribeBtn">اشترك الآن</button>
+ </form>
+</section>
+
+</main>
+
+<footer id="footer">
+ <div class="container">
+  <div class="footer-grid">
+   <div class="footer-about">
+    <a href="#home" class="footer-logo">JOE<span>.</span></a>
+    <p id="footerDesc">JOE MALL وجهتك لاكتشاف الملابس والساعات والأحذية والإكسسوارات وكل التفاصيل اللي تكمل إطلالتك.</p>
+    <div class="socials">
+     <a href="#footer" aria-label="Instagram">ig</a>
+     <a href="#footer" aria-label="Facebook">f</a>
+     <a href="#footer" aria-label="TikTok">tk</a>
+    </div>
+   </div>
+   <div class="footer-col">
+    <h3 id="footer1Title">روابط سريعة</h3>
+    <a href="#home" id="fl1">الرئيسية</a>
+    <a href="#categories" id="fl2">الأقسام</a>
+    <a href="#products" id="fl3">المتجر</a>
+    <a href="#offers" id="fl4">العروض</a>
+   </div>
+   <div class="footer-col">
+    <h3 id="footer2Title">أشهر الأقسام</h3>
+    <a href="#products" onclick="selectCategory('watches')" id="fc1">الساعات</a>
+    <a href="#products" onclick="selectCategory('sneakers')" id="fc2">الكوتشات</a>
+    <a href="#products" onclick="selectCategory('suits')" id="fc3">البدل</a>
+    <a href="#products" onclick="selectCategory('accessories')" id="fc4">الإكسسوارات</a>
+   </div>
+   <div class="footer-col">
+    <h3 id="footer3Title">معلومات</h3>
+    <a href="#footer" id="fi1">من نحن</a>
+    <a href="#footer" id="fi2">سياسة الخصوصية</a>
+    <a href="#footer" id="fi3">الشحن والاستبدال</a>
+    <a href="#footer" id="fi4">خدمة العملاء</a>
+   </div>
+  </div>
+  <div class="copyright" id="copyright">© 2026 JOE MALL. جميع الحقوق محفوظة.</div>
+ </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const categories=[
+ {id:"watches",ar:"الساعات",en:"Watches",subAr:"أناقة في كل ثانية",subEn:"Every second in style",img:"photo-1524805444758-089113d48a6d"},
+ {id:"clothes",ar:"الملابس",en:"Clothing",subAr:"ستايل لكل يوم",subEn:"Everyday style",img:"photo-1483985988355-763728e1935b"},
+ {id:"sneakers",ar:"الكوتشات",en:"Sneakers",subAr:"راحة وحركة",subEn:"Comfort and movement",img:"photo-1542291026-7eec264c27ff"},
+ {id:"shoes",ar:"الأحذية",en:"Shoes",subAr:"خطوة أنيقة",subEn:"A stylish step",img:"photo-1543163521-1bf539c55dd2"},
+ {id:"suits",ar:"البدل",en:"Suits",subAr:"للمناسبات المهمة",subEn:"For special occasions",img:"photo-1592878904946-b3cd8ae243d0"},
+ {id:"homewear",ar:"ملابس بيتي",en:"Homewear",subAr:"راحة في البيت",subEn:"Comfort at home",img:"photo-1551488831-00ddcb6c6bd3"},
+ {id:"undershirts",ar:"الفانلات",en:"Undershirts",subAr:"أساسياتك اليومية",subEn:"Daily essentials",img:"photo-1521572163474-6864f9cf17ab"},
+ {id:"shirts",ar:"القمصان",en:"Shirts",subAr:"كاجوال وكلاسيك",subEn:"Casual and classic",img:"photo-1598033129183-c4f50c736f10"},
+ {id:"socks",ar:"الشربات",en:"Socks",subAr:"تفاصيل صغيرة",subEn:"Small details",img:"photo-1586350977771-b3b0abd50c82"},
+ {id:"accessories",ar:"الإكسسوارات",en:"Accessories",subAr:"لمستك الأخيرة",subEn:"The finishing touch",img:"photo-1611652022419-a9419f74343d"}
+];
+
+const products=[
+ {id:1,c:"watches",ar:"ساعة كلاسيك بسوار معدني",en:"Classic Metal Watch",p:1450,o:1800,img:"photo-1524805444758-089113d48a6d"},
+ {id:2,c:"watches",ar:"ساعة رجالي بتصميم أنيق",en:"Elegant Men's Watch",p:1850,o:2200,img:"photo-1523170335258-f5ed11844a49"},
+ {id:3,c:"watches",ar:"ساعة رياضية عصرية",en:"Modern Sport Watch",p:950,o:1200,img:"photo-1523275335684-37898b6baf30"},
+ {id:4,c:"watches",ar:"ساعة جلد بني",en:"Brown Leather Watch",p:1250,o:null,img:"photo-1508685096489-7aacd43bd3b1"},
+ {id:5,c:"watches",ar:"ساعة كلاسيك فضية",en:"Silver Classic Watch",p:1650,o:1950,img:"photo-1547996160-81dfa63595aa"},
+ {id:6,c:"watches",ar:"ساعة مينيمال سوداء",en:"Minimal Black Watch",p:1150,o:null,img:"photo-1539874754764-5a96559165b0"},
+ {id:7,c:"watches",ar:"ساعة أنيقة للنساء",en:"Elegant Women's Watch",p:1350,o:1600,img:"photo-1524592094714-0f0654e20314"},
+ {id:8,c:"watches",ar:"ساعة فاخرة بتصميم مميز",en:"Premium Statement Watch",p:2200,o:null,img:"photo-1522335789203-aabd1fc54bc9"},
+ {id:9,c:"clothes",ar:"تيشيرت أسود أساسي",en:"Essential Black T-Shirt",p:350,o:450,img:"photo-1521572163474-6864f9cf17ab"},
+ {id:10,c:"clothes",ar:"جاكيت كاجوال",en:"Casual Jacket",p:1250,o:1500,img:"photo-1551028719-00167b16eac5"},
+ {id:11,c:"clothes",ar:"هودي شتوي مريح",en:"Comfort Winter Hoodie",p:780,o:null,img:"photo-1556821840-3a63f95609a7"},
+ {id:12,c:"clothes",ar:"بنطلون جينز",en:"Denim Jeans",p:850,o:1000,img:"photo-1542272604-787c3835535d"},
+ {id:13,c:"clothes",ar:"تيشيرت أبيض كلاسيك",en:"Classic White T-Shirt",p:320,o:null,img:"photo-1503341504253-dff4815485f1"},
+ {id:14,c:"clothes",ar:"جاكيت جلد",en:"Leather Jacket",p:1750,o:2100,img:"photo-1520975958225-35c3bca9ad52"},
+ {id:15,c:"sneakers",ar:"كوتشي رياضي أحمر",en:"Red Sport Sneakers",p:1150,o:1400,img:"photo-1542291026-7eec264c27ff"},
+ {id:16,c:"sneakers",ar:"كوتشي أبيض يومي",en:"Everyday White Sneakers",p:1250,o:null,img:"photo-1549298916-b41d501d3772"},
+ {id:17,c:"sneakers",ar:"كوتشي أسود كلاسيك",en:"Classic Black Sneakers",p:1100,o:1350,img:"photo-1460353581641-37baddab0fa2"},
+ {id:18,c:"sneakers",ar:"حذاء جري رياضي",en:"Running Sneakers",p:1450,o:null,img:"photo-1552346154-21d32810aba3"},
+ {id:19,c:"shoes",ar:"حذاء جلد رجالي",en:"Men's Leather Shoes",p:1350,o:1600,img:"photo-1614252369475-531eba835eb1"},
+ {id:20,c:"shoes",ar:"حذاء كلاسيك رسمي",en:"Formal Classic Shoes",p:1550,o:null,img:"photo-1614252235316-8c857d38b5f4"},
+ {id:21,c:"shoes",ar:"حذاء نسائي أنيق",en:"Elegant Women's Shoes",p:950,o:1200,img:"photo-1543163521-1bf539c55dd2"},
+ {id:22,c:"shoes",ar:"حذاء كاجوال يومي",en:"Everyday Casual Shoes",p:850,o:null,img:"photo-1531310197839-ccf54634509e"},
+ {id:23,c:"suits",ar:"بدلة رجالي كلاسيك",en:"Classic Men's Suit",p:3800,o:4300,img:"photo-1592878904946-b3cd8ae243d0"},
+ {id:24,c:"suits",ar:"جاكيت رسمي أنيق",en:"Elegant Formal Blazer",p:2200,o:null,img:"photo-1591047139829-d91aecb6caea"},
+ {id:25,c:"suits",ar:"بدلة مناسبة رسمية",en:"Formal Occasion Suit",p:4200,o:4800,img:"photo-1507679799987-c73779587ccf"},
+ {id:26,c:"homewear",ar:"طقم ملابس بيتي قطني",en:"Cotton Homewear Set",p:650,o:null,img:"photo-1618354691373-d851c5c3a990"},
+ {id:27,c:"homewear",ar:"بيجامة رجالي مريحة",en:"Comfort Men's Pajamas",p:580,o:700,img:"photo-1551488831-00ddcb6c6bd3"},
+ {id:28,c:"homewear",ar:"طقم بيتي خفيف",en:"Lightweight Homewear",p:520,o:null,img:"photo-1576566588028-4147f3842f27"},
+ {id:29,c:"undershirts",ar:"فانلة قطن بيضاء",en:"White Cotton Undershirt",p:160,o:null,img:"photo-1562157873-818bc0726f68"},
+ {id:30,c:"undershirts",ar:"فانلة قطن سوداء",en:"Black Cotton Undershirt",p:170,o:null,img:"photo-1521572163474-6864f9cf17ab"},
+ {id:31,c:"undershirts",ar:"طقم فانلات أساسية",en:"Essential Undershirt Pack",p:300,o:360,img:"photo-1503341504253-dff4815485f1"},
+ {id:32,c:"shirts",ar:"قميص أبيض كلاسيك",en:"Classic White Shirt",p:650,o:null,img:"photo-1598033129183-c4f50c736f10"},
+ {id:33,c:"shirts",ar:"قميص كاجوال أزرق",en:"Blue Casual Shirt",p:580,o:700,img:"photo-1603252109303-2751441dd157"},
+ {id:34,c:"shirts",ar:"قميص أسود أنيق",en:"Elegant Black Shirt",p:620,o:null,img:"photo-1602810318383-e386cc2a3ccf"},
+ {id:35,c:"socks",ar:"طقم شربات قطني",en:"Cotton Socks Pack",p:120,o:null,img:"photo-1586350977771-b3b0abd50c82"},
+ {id:36,c:"socks",ar:"شربات رياضية",en:"Sport Socks",p:150,o:180,img:"photo-1582966772680-860e372bb558"},
+ {id:37,c:"socks",ar:"شربات كلاسيك",en:"Classic Socks",p:100,o:null,img:"photo-1615484477778-ca3b77940c25"},
+ {id:38,c:"accessories",ar:"نظارة شمسية أنيقة",en:"Elegant Sunglasses",p:450,o:550,img:"photo-1511499767150-a48a237f0083"},
+ {id:39,c:"accessories",ar:"حزام جلد كلاسيك",en:"Classic Leather Belt",p:350,o:null,img:"photo-1624222247344-550fb8f1f143"},
+ {id:40,c:"accessories",ar:"محفظة جلد رجالي",en:"Men's Leather Wallet",p:420,o:500,img:"photo-1627123424574-724758594e93"},
+ {id:41,c:"accessories",ar:"شنطة كاجوال",en:"Casual Bag",p:750,o:null,img:"photo-1553062407-98eeb64c6a62"},
+ {id:42,c:"accessories",ar:"كاب كاجوال",en:"Casual Cap",p:250,o:null,img:"photo-1588850561407-ed78c282e89b"}
+];
+
+let english=false;
+let activeCategory="all";
+let cart=[];
+let favorites=new Set();
+
+const $=id=>document.getElementById(id);
+
+function money(n){
+ return english?"EGP "+n.toLocaleString("en-US"):n.toLocaleString("ar-EG")+" ج.م";
+}
+
+function photo(id,w=550){
+ return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+}
+
+function renderCategories(){
+ $("categoryGrid").innerHTML=categories.map(c=>`
+  <article class="category-card" onclick="selectCategory('${c.id}')">
+   <div class="category-image">
+    <img src="${photo(c.img,450)}" alt="${english?c.en:c.ar}" loading="lazy">
+   </div>
+   <div class="category-info">
+    <h3>${english?c.en:c.ar}</h3>
+    <p>${english?c.subEn:c.subAr}</p>
+    <span class="arrow">↙</span>
+   </div>
+  </article>
+ `).join("");
+}
+
+function renderFilters(){
+ const all=english?"All products":"كل المنتجات";
+ $("filters").innerHTML=`
+  <button class="filter-btn ${activeCategory==="all"?"active":""}" onclick="selectCategory('all')">${all}</button>
+  ${categories.map(c=>`
+   <button class="filter-btn ${activeCategory===c.id?"active":""}" onclick="selectCategory('${c.id}')">${english?c.en:c.ar}</button>
+  `).join("")}
+ `;
+}
+
+function selectCategory(id){
+ activeCategory=id;
+ renderFilters();
+ renderProducts();
+ $("products").scrollIntoView({behavior:"smooth"});
+}
+
+function renderProducts(){
+ let list=products.filter(p=>{
+  const c=categories.find(x=>x.id===p.c);
+  const q=$("searchInput").value.trim().toLowerCase();
+  const title=english?p.en:p.ar;
+  const categoryName=english?c.en:c.ar;
+  return (activeCategory==="all"||p.c===activeCategory)&&
+   (!q||title.toLowerCase().includes(q)||p.ar.toLowerCase().includes(q)||p.en.toLowerCase().includes(q)||categoryName.toLowerCase().includes(q));
+ });
+
+ const sort=$("sortSelect").value;
+ if(sort==="low")list.sort((a,b)=>a.p-b.p);
+ if(sort==="high")list.sort((a,b)=>b.p-a.p);
+
+ $("resultsNote").textContent=english?`${list.length} products`:`عدد المنتجات: ${list.length}`;
+
+ if(!list.length){
+  $("productGrid").innerHTML=`<div class="empty-state">${english?"No products found. Try another search.":"مفيش منتجات مطابقة للبحث. جرب كلمة تانية."}</div>`;
+  return;
+ }
+
+ $("productGrid").innerHTML=list.map(p=>{
+  const c=categories.find(x=>x.id===p.c);
+  const liked=favorites.has(p.id);
+  return `
+   <article class="product-card">
+    <div class="product-image">
+     <img src="${photo(p.img)}" alt="${english?p.en:p.ar}" loading="lazy">
+     ${p.o?`<span class="product-badge">${english?"SPECIAL OFFER":"عرض خاص"}</span>`:""}
+     <button class="product-heart ${liked?"liked":""}" onclick="toggleFavorite(${p.id})" aria-label="${english?"Favorite":"المفضلة"}">${liked?"♥":"♡"}</button>
+    </div>
+    <div class="product-info">
+     <div class="product-category">${english?c.en:c.ar}</div>
+     <h3>${english?p.en:p.ar}</h3>
+     <div class="product-rating">★★★★★ <span>(4.8)</span></div>
+     <div class="product-bottom">
+      <div class="price">${money(p.p)} ${p.o?`<span class="old-price">${money(p.o)}</span>`:""}</div>
+      <button class="add-btn" onclick="addToCart(${p.id})" aria-label="${english?"Add to cart":"أضف للسلة"}">+</button>
+     </div>
+    </div>
+   </article>
+  `;
+ }).join("");
+}
+
+function toast(message){
+ $("toast").textContent=message;
+ $("toast").classList.add("show");
+ setTimeout(()=>$("toast").classList.remove("show"),2300);
+}
+
+function addToCart(id){
+ cart.push(products.find(p=>p.id===id));
+ $("cartCount").textContent=cart.length;
+ toast(english?"Added to cart":"تمت إضافة المنتج للسلة");
+}
+
+function toggleFavorite(id){
+ if(favorites.has(id))favorites.delete(id);
+ else favorites.add(id);
+ renderProducts();
+ toast(english?"Favorites updated":"تم تحديث المفضلة");
+}
+
+$("cartBtn").addEventListener("click",()=>{
+ if(!cart.length){
+  alert(english?"Your cart is empty.":"السلة فارغة.");
+  return;
+ }
+ const total=cart.reduce((s,p)=>s+p.p,0);
+ const lines=cart.map((p,i)=>`${i+1}. ${english?p.en:p.ar} — ${money(p.p)}`).join("\n");
+ alert((english?"YOUR CART\n\n":"سلة مشترياتك\n\n")+lines+"\n\n"+(english?"Total: ":"الإجمالي: ")+money(total)+"\n\n"+(english?"Demo cart only; checkout is not connected.":"السلة تجريبية، ولا يوجد نظام دفع متصل."));
+});
+
+$("searchFocus").addEventListener("click",()=>{
+ $("products").scrollIntoView({behavior:"smooth"});
+ setTimeout(()=>$("searchInput").focus(),500);
+});
+
+$("searchInput").addEventListener("input",renderProducts);
+$("sortSelect").addEventListener("change",renderProducts);
+
+$("menuBtn").addEventListener("click",()=>$("nav").classList.toggle("open"));
+document.querySelectorAll("nav a").forEach(a=>a.addEventListener("click",()=>$("nav").classList.remove("open")));
+
+const translations={
+ announcement:["<span>✦</span> اكتشف أحدث مجموعات JOE MALL — أناقتك تبدأ من هنا","<span>✦</span> Discover the latest JOE MALL collections"],
+ heroEyebrow:["WELCOME TO JOE MALL","WELCOME TO JOE MALL"],
+ heroTitle:["عالمك من<br><span>الأناقة يبدأ هنا.</span>","YOUR WORLD OF<br><span>STYLE STARTS HERE.</span>"],
+ heroDesc:["من الساعات الفاخرة لأحدث الكوتشات والملابس والأحذية والبدل. اكتشف تجربة تسوق مختلفة تجمع كل احتياجاتك في مكان واحد.","From watches and sneakers to clothing, shoes and suits. Discover a shopping destination for all your essentials."],
+ heroBtn:["اكتشف أقسامنا <span>←</span>","EXPLORE CATEGORIES <span>→</span>"],
+ heroSecondBtn:["تسوق الآن","SHOP NOW"],
+ heroNoteTitle:["كل تفاصيل إطلالتك في مكان واحد","Your complete style destination"],
+ heroNoteDesc:["ملابس • ساعات • أحذية • إكسسوارات","Clothing • Watches • Shoes • Accessories"],
+ floatSmall:["YOUR STYLE","YOUR STYLE"],
+ floatBottom:["ONE DESTINATION","ONE DESTINATION"],
+ heroTagSmall:["DISCOVER YOUR LOOK","DISCOVER YOUR LOOK"],
+ heroTagTitle:["Style. Quality. You.","Style. Quality. You."],
+ heroTagDesc:["اختار اللي يشبهك.","Find your own style."],
+ b1:["تشكيلة متنوعة","Endless Variety"],bd1:["كل احتياجاتك مع بعض","Everything together"],
+ b2:["ستايل يناسبك","Your Style"],bd2:["اختيارات لكل الأذواق","Options for every taste"],
+ b3:["تجربة سهلة","Easy Shopping"],bd3:["ابحث واختار بسهولة","Search and explore"],
+ b4:["عالم JOE","The JOE World"],bd4:["كل حاجة في مكان واحد","All in one place"],
+ categoriesTitle:['تسوق حسب <span>القسم.</span>','SHOP BY <span>CATEGORY.</span>'],
+ categoriesDesc:["اختار القسم واكتشف مجموعتنا المتنوعة.","Explore our diverse collections."],
+ allProductsLink:['كل المنتجات <span>←</span>','All products <span>→</span>'],
+ promo1Small:["THE PERFECT LOOK","THE PERFECT LOOK"],
+ promo1Title:["إطلالة متكاملة","The Complete Look"],
+ promo1Desc:["من اللبس للحذاء والإكسسوارات.","From clothing to shoes and accessories."],
+ promo1Link:["اكتشف المنتجات ←","Explore products →"],
+ promo2Small:["TIMELESS STYLE","TIMELESS STYLE"],
+ promo2Title:["الوقت له أناقة","Time Has a Style"],
+ promo2Desc:["اكتشف تشكيلة الساعات المميزة.","Discover our watch collection."],
+ promo2Link:["تسوق الساعات ←","Shop watches →"],
+ promo3Small:["EVERYDAY ESSENTIALS","EVERYDAY ESSENTIALS"],
+ promo3Title:["تفاصيلك اليومية","Your Daily Essentials"],
+ promo3Desc:["كل القطع الأساسية اللي تحتاجها.","All your everyday essentials."],
+ promo3Link:["اكتشف المزيد ←","Discover more →"],
+ productsTitle:['اختيارات <span>JOE.</span>','THE <span>JOE</span> SELECTION.'],
+ productsDesc:["تشكيلة من المنتجات المختارة لتناسب يومك.","A curated selection for every day."],
+ backCategories:["تصفح الأقسام ←","Browse categories →"],
+ sortFeatured:["الترتيب الافتراضي","Featured"],
+ sortLow:["السعر: من الأقل للأعلى","Price: Low to High"],
+ sortHigh:["السعر: من الأعلى للأقل","Price: High to Low"],
+ editorialEyebrow:["THE NEW EDIT","THE NEW EDIT"],
+ editorialTitle:["كل يوم فرصة<br>لستايل جديد.","A NEW DAY.<br>A NEW STYLE."],
+ editorialDesc:["اكتشف قطع تقدر تنسقها بطريقتك، من الإطلالة الكاجوال لحد المناسبات الخاصة.","Discover pieces for every look, from casual days to special occasions."],
+ editorialBtn:["اكتشف مجموعتنا ←","EXPLORE COLLECTION →"],
+ newsTitle:["خليك قريب من عالم JOE.","STAY CLOSE TO JOE."],
+ newsDesc:["اشترك لمتابعة أحدث المنتجات والعروض.","Subscribe for new arrivals and offers."],
+ emailInput:["بريدك الإلكتروني","Your email address"],
+ subscribeBtn:["اشترك الآن","SUBSCRIBE"],
+ footerDesc:["JOE MALL وجهتك لاكتشاف الملابس والساعات والأحذية والإكسسوارات وكل التفاصيل اللي تكمل إطلالتك.","JOE MALL is your destination for clothing, watches, shoes, accessories and more."],
+ footer1Title:["روابط سريعة","QUICK LINKS"],
+ fl1:["الرئيسية","Home"],fl2:["الأقسام","Categories"],fl3:["المتجر","Shop"],fl4:["العروض","Offers"],
+ footer2Title:["أشهر الأقسام","POPULAR CATEGORIES"],
+ fc1:["الساعات","Watches"],fc2:["الكوتشات","Sneakers"],fc3:["البدل","Suits"],fc4:["الإكسسوارات","Accessories"],
+ footer3Title:["معلومات","INFORMATION"],
+ fi1:["من نحن","About Us"],fi2:["سياسة الخصوصية","Privacy Policy"],fi3:["الشحن والاستبدال","Shipping & Returns"],fi4:["خدمة العملاء","Customer Service"],
+ copyright:["© 2026 JOE MALL. جميع الحقوق محفوظة.","© 2026 JOE MALL. All rights reserved."]
+};
+
+function toggleLanguage(){
+ english=!english;
+ document.documentElement.lang=english?"en":"ar";
+ document.documentElement.dir=english?"ltr":"rtl";
+ document.body.style.fontFamily=english?"'Poppins',sans-serif":"'Cairo',sans-serif";
+ $("langBtn").textContent=english?"عربي":"EN";
+
+ Object.entries(translations).forEach(([id,values])=>{
+  const el=$(id);
+  if(!el)return;
+  if(id==="emailInput")el.placeholder=values[english?1:0];
+  else el.innerHTML=values[english?1:0];
+ });
+
+ $("searchInput").placeholder=english?"Search watches, sneakers, shirts...":"ابحث عن ساعة، كوتشي، قميص...";
+ renderCategories();
+ renderFilters();
+ renderProducts();
+}
+
+$("langBtn").addEventListener("click",toggleLanguage);
+
+$("newsletterForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ toast(english?"Thanks for subscribing! Demo form only.":"شكرًا لاشتراكك! النموذج تجريبي.");
+ $("emailInput").value="";
+});
+
+renderCategories();
+renderFilters();
+renderProducts();
+</script>
+
+</body>
+</html>
